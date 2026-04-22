@@ -1,0 +1,115 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "description": "Vex 长期记忆 - 结构化存储",
+  "version": "1.0",
+
+  "user": {
+    "type": "object",
+    "properties": {
+      "workContext": {
+        "type": "object",
+        "properties": {
+          "summary": { "type": "string" },
+          "updatedAt": { "type": "string" }
+        }
+      },
+      "personalContext": {
+        "type": "object",
+        "properties": {
+          "summary": { "type": "string" },
+          "updatedAt": { "type": "string" }
+        }
+      },
+      "topOfMind": {
+        "type": "object",
+        "properties": {
+          "summary": { "type": "string" },
+          "updatedAt": { "type": "string" }
+        }
+      }
+    }
+  },
+
+  "history": {
+    "type": "object",
+    "properties": {
+      "recentMonths": {
+        "type": "object",
+        "properties": {
+          "summary": { "type": "string" },
+          "updatedAt": { "type": "string" }
+        }
+      },
+      "earlierContext": {
+        "type": "object",
+        "properties": {
+          "summary": { "type": "string" },
+          "updatedAt": { "type": "string" }
+        }
+      },
+      "longTermBackground": {
+        "type": "object",
+        "properties": {
+          "summary": { "type": "string" },
+          "updatedAt": { "type": "string" }
+        }
+      }
+    }
+  },
+
+  "facts": {
+    "type": "array",
+    "items": {
+      "type": "object",
+      "required": ["id", "content", "category", "confidence", "createdAt"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "唯一标识，格式: fact_{timestamp}_{hash}"
+        },
+        "content": {
+          "type": "string",
+          "description": "事实内容"
+        },
+        "category": {
+          "type": "string",
+          "enum": ["context", "correction", "preference", "behavior", "fact", "decision"],
+          "description": "事实类别"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "置信度 >= 0.9 才入库"
+        },
+        "tags": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "标签，便于检索"
+        },
+        "source": {
+          "type": "string",
+          "description": "来源：thread_id 或 'manual'"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "valid": {
+          "type": "boolean",
+          "description": "是否有效，false = 已废弃/被修正"
+        }
+      }
+    }
+  },
+
+  "lastUpdated": {
+    "type": "string",
+    "format": "date-time"
+  }
+}

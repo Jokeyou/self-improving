@@ -1,0 +1,59 @@
+{
+  "version": "1.0",
+  "user": {
+    "workContext": {
+      "summary": "",
+      "updatedAt": ""
+    },
+    "personalContext": {
+      "summary": "",
+      "updatedAt": ""
+    },
+    "topOfMind": {
+      "summary": "",
+      "updatedAt": ""
+    }
+  },
+  "history": {
+    "recentMonths": {
+      "summary": "",
+      "updatedAt": ""
+    },
+    "earlierContext": {
+      "summary": "",
+      "updatedAt": ""
+    },
+    "longTermBackground": {
+      "summary": "",
+      "updatedAt": ""
+    }
+  },
+  "facts": [
+    {
+      "id": "fact_1776874975158_1d5e6e",
+      "content": "测试事实：Vex喜欢简洁回复",
+      "category": "test",
+      "confidence": 0.95,
+      "tags": [],
+      "source": "manual",
+      "createdAt": "2026-04-22T16:22:55.152557+00:00",
+      "updatedAt": "2026-04-22T16:22:55.152557+00:00",
+      "valid": true
+    },
+    {
+      "id": "fact_1776875005902_fcd4a5",
+      "content": "[纠正] 不对，密码应该是 abc123 | 上下文: 我之前告诉你密码是 xyz789",
+      "category": "correction",
+      "confidence": 0.95,
+      "tags": [
+        "auto-detected",
+        "直接否定"
+      ],
+      "source": "correction-auto",
+      "createdAt": "2026-04-22T16:23:25.896608+00:00",
+      "updatedAt": "2026-04-22T16:23:25.896608+00:00",
+      "valid": true
+    }
+  ],
+  "lastUpdated": "2026-04-22T16:23:25.902814+00:00"
+}
