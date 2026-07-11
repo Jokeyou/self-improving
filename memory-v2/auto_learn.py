@@ -23,7 +23,6 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from storage import add_fact, search_facts, get_stats, invalidate_fact
 
 AUTO_LOG = os.path.expanduser("~/self-improving/corrections-auto.md")
-MIN_CONFIDENCE = 0.7  # 自动入库阈值（比存储层默认 0.85 低，因为有detector前置过滤）
 
 
 def _timestamp():
@@ -119,22 +118,21 @@ def check_and_record(user_message: str, assistant_context: str = "") -> dict:
     if assistant_context:
         content += f" | 上下文: {assistant_context[:50]}"
     
-    # 写入 storage
-    if confidence >= MIN_CONFIDENCE:
-        tags = ["auto-detected", detection.get("label", "")]
-        source = "correction-auto"
-        fact = add_fact(
-            content=content,
-            category=cat,
-            confidence=confidence,
-            tags=tags,
-            source=source,
-        )
-        # 标记 auto log 为已处理
+    # 写入 storage（阈值检查在 add_fact 内部统一处理）
+    tags = ["auto-detected", detection.get("label", "")]
+    source = "correction-auto"
+    fact = add_fact(
+        content=content,
+        category=cat,
+        confidence=confidence,
+        tags=tags,
+        source=source,
+    )
+    if fact is not None:
         _mark_processed(_timestamp())
         return {"detected": True, "fact": fact, "confidence": confidence}
     
-    return {"detected": True, "fact": None, "confidence": confidence, "reason": "below threshold"}
+    return {"detected": True, "fact": None, "confidence": confidence, "reason": "below storage threshold"}
 
 
 def review_pending() -> list:

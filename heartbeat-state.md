@@ -1,10 +1,31 @@
 # Self-Improving Heartbeat State
 
-last_heartbeat_started_at: 2026-04-21T07:06:00+08:00
+last_heartbeat_started_at: 2026-06-07T22:46:00+08:00
 last_reviewed_change_at: 2026-04-21T07:06:00+08:00
-last_heartbeat_result: OK
-last_actions: corrections.md更新（小红书封面图规则）；写2026-04-06会话小结（日记）到memory/2026-04-06.md；发现两个cron任务error待查（每日历史/认知冲刷）
-lastSessionSummaryAt: 2026-04-12T12:11:00+08:00
+last_heartbeat_result: HEARTBEAT_OK
+last_actions: 检查self-improving/目录，index.md正常重建（每小时cron），无异常变更，无需操作
+## 会话小结 2026-05-31 18:46
+
+**主题**：VPN（腾讯云东京VPS）续费 + Claude Code MiniMax API 配置问题
+
+**关键决策**：
+- VPN 节点 150.109.205.101 在 5/20 到期，已续费
+- VPN 节点走东京出口，Tokyo IP（150.109.205.101）
+- Claude Code 默认连 Anthropic 官方 API，无法在国内直连
+- 已尝试通过 `--settings` + `ANTHROPIC_BASE_URL` 切换到 MiniMax API，但因 VPN 代理出口无法访问国内域名（api.minimax.com）失败
+- 已写 VPN 方案文档：`效率提升/VPN翻墙方案（腾讯云东京VPS+Shadowsocks）.md`
+
+**待办**：
+- 用户去腾讯云控制台确认续费后 VPS 状态
+- 用户测试关 VPN 直连 MiniMax API：`claude --settings '{"env":{"ANTHROPIC_BASE_URL":"https://api.minimax.com/anthropic","ANTHROPIC_API_KEY":"完整key"}}' --bare --print "say hi"`
+
+**备注**:
+- API Key: `sk-cp-…bxp0`（实际 key 已截断，需完整 key）
+- Claude Code 与 OpenClaw 是两个独立进程，Claude Code 不能直接复用 OpenClaw 的 MiniMax API 配置
+
+---
+
+lastSessionSummaryAt: 2026-06-01T23:16:00+08:00
 
 ## Darwin Skill 触发追踪
 
